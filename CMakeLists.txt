@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 set (source_dir "${PROJECT_SOURCE_DIR}/src/")
 set (test_dir "${PROJECT_SOURCE_DIR}/tests/")
 
-file (GLOB source_files "${source_dir}/*.cpp")
+file (GLOB_RECURSE source_files CONFIGURE_DEPENDS "${source_dir}/*.cpp")
 file (GLOB test_files "${test_dir}/*.cpp")
 
 # Adding source files to executable 
