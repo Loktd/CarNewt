@@ -10,7 +10,11 @@ set (CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Setting up source directory and source files
 set (source_dir "${PROJECT_SOURCE_DIR}/src/")
+set (test_dir "${PROJECT_SOURCE_DIR}/tests/")
+
 file (GLOB source_files "${source_dir}/*.cpp")
+file (GLOB test_files "${test_dir}/*.cpp")
+
 
 # Adding source files to executable 
 add_executable(CarNewt "${source_files}")
@@ -42,6 +46,22 @@ target_include_directories(CarNewt PRIVATE libs/glm)
 # Enabling testing via CTest
 include(CTest)
 enable_testing()
+
+# Turn on fetching
+Include(FetchContent)
+
+# Fetch Catch2
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.4.0 # or a later release
+)
+FetchContent_MakeAvailable(Catch2)
+
+# Create an example test case
+add_executable(ExampleTest "${test_files}")
+target_link_libraries(ExampleTest PRIVATE Catch2::Catch2WithMain)
+add_test(NAME CarNewtTests COMMAND ExampleTest)
 
 # Setting up CPack
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
