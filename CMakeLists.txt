@@ -21,13 +21,19 @@ add_executable(CarNewt "${source_files}")
 # Including include directory
 target_include_directories(CarNewt PRIVATE include)
 
-# Setup GLAD
-add_library(glad libs/glad/src/glad.c)
-target_include_directories(glad PUBLIC libs/glad/include)
-target_link_libraries(CarNewt PRIVATE glad)
-
 # Turn on fetching
 Include(FetchContent)
+
+FetchContent_Declare(
+    glad
+    GIT_REPOSITORY https://github.com/Dav1dde/glad.git
+    GIT_TAG        v2.0.6
+    GIT_PROGRESS   TRUE
+    SOURCE_SUBDIR  cmake
+)
+FetchContent_MakeAvailable(glad)
+glad_add_library(glad_gl_core_33 STATIC REPRODUCIBLE LOADER API gl:core=3.3)
+target_link_libraries(CarNewt PRIVATE glad_gl_core_33)
 
 # Disable Wayland on Linux for GLFW (cross-platform fix)
 FetchContent_Declare(
@@ -47,6 +53,7 @@ FetchContent_MakeAvailable(glm)
 
 target_include_directories(CarNewt PRIVATE
   ${glfw_SOURCE_DIR}/include
+  ${glad_SOURCE_DIR}/include
   ${glm_SOURCE_DIR}
 )
 
