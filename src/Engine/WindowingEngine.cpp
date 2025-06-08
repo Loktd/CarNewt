@@ -101,23 +101,20 @@ WindowingEngine& WindowingEngine::GetInstance()
     return s_EngineInstance;
 }
 
-bool WindowingEngine::KeepRunning()
-{
-    return !glfwWindowShouldClose(m_Window);
-}
-
 void WindowingEngine::Run()
 {
-    glfwPollEvents();
+    while (!glfwWindowShouldClose(m_Window)) {
+        glfwPollEvents();
 
-    double endTime = glfwGetTime();
-    TimeElapsed(m_StartTime, endTime);
-    m_StartTime = endTime;
+        double endTime = glfwGetTime();
+        TimeElapsed(m_StartTime, endTime);
+        m_StartTime = endTime;
 
-    if (m_RefreshNeeded) {
-        Render();
-        glfwSwapBuffers(m_Window);
-        m_RefreshNeeded = false;
+        if (m_RefreshNeeded) {
+            Render();
+            glfwSwapBuffers(m_Window);
+            m_RefreshNeeded = false;
+        }
     }
 }
 

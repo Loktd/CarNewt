@@ -41,13 +41,11 @@ private:
     static void window_refresh_callback(GLFWwindow* window);
 
     WindowingEngine(const char* title, int width, int height, int major, int minor);
+    WindowingEngine(const WindowingEngine& copied) = delete;
     ~WindowingEngine();
 public:
-    WindowingEngine(const WindowingEngine& copied) = delete;
-
     static WindowingEngine& GetInstance();
 
-    bool KeepRunning();
     void Run();
     void SwitchToScene(SceneName name);
     void Exit();
