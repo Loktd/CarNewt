@@ -1,4 +1,7 @@
-#include <WindowingEngine.h>
+#include <Engine/WindowingEngine.h>
+#include <Exceptions/EngineExceptions.hpp>
+#include <Scene/MainMenuScene.h>
+#include <Scene/SimulationScene.h>
 
 WindowingEngine WindowingEngine::s_EngineInstance = WindowingEngine("CarNewt", 800, 600, 3, 3);
 
@@ -81,10 +84,9 @@ WindowingEngine::WindowingEngine(const char* title, int width, int height, int m
     // Setting up swap interval
     glfwSwapInterval(1);
 
-    m_StartTime = glfwGetTime();
+    m_StartTime = 0;
     // Any initialization can run here
     Initialize();
-    Refresh();
 }
 
 WindowingEngine::~WindowingEngine()
@@ -99,12 +101,12 @@ WindowingEngine& WindowingEngine::GetInstance()
     return s_EngineInstance;
 }
 
-bool WindowingEngine::keepRunning()
+bool WindowingEngine::KeepRunning()
 {
     return !glfwWindowShouldClose(m_Window);
 }
 
-void WindowingEngine::run()
+void WindowingEngine::Run()
 {
     glfwPollEvents();
 
@@ -119,11 +121,30 @@ void WindowingEngine::run()
     }
 }
 
+void WindowingEngine::SwitchToScene(SceneName name)
+{
+    if (m_SceneMap.count(name) == 0) {
+        throw UnknownSceneName("Scene name is not registered, cannot switch to non-existent scene.");
+    }
+
+    m_ActiveScene = m_SceneMap.at(name);
+    Refresh();
+}
+
+
+void WindowingEngine::Exit()
+{
+    exit(EXIT_SUCCESS);
+}
+
 // Engine setup ends here, application specific stuff begins here
 
 void WindowingEngine::Initialize()
 {
-    // Anything that needs initalizing can come here
+    m_SceneMap[SceneName::MAIN_MENU] = std::make_shared<MainMenuScene>();
+    m_SceneMap[SceneName::SIMULATION] = std::make_shared<SimulationScene>();
+
+    SwitchToScene(SceneName::MAIN_MENU);
 }
 
 void WindowingEngine::Refresh()
@@ -134,36 +155,36 @@ void WindowingEngine::Refresh()
 void WindowingEngine::Render()
 {
     glViewport(0, 0, m_Width, m_Height);
-    glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+
+    m_ActiveScene->Render();
 }
 
 void WindowingEngine::KeyPressed(int key)
 {
-    // Key being pressed handled here
+    m_ActiveScene->HandleKeyPressed(key);
 }
 
 void WindowingEngine::KeyReleased(int key)
 {
-    // Key being released handled here
+    m_ActiveScene->HandleKeyReleased(key);
 }
 
 void WindowingEngine::MousePressed(int button, int xpos, int ypos)
 {
-    // Mouse being pressed handled here
+    m_ActiveScene->HandleMousePressed(button, xpos, ypos);
 }
 
 void WindowingEngine::MouseReleased(int button, int xpos, int ypos)
 {
-    // Mouse being released handled here
+    m_ActiveScene->HandleMouseReleased(button, xpos, ypos);
 }
 
 void WindowingEngine::MouseMotion(int xpos, int ypos)
 {
-    // Mouse movement handled here
+    m_ActiveScene->HandleMouseMotion(xpos, ypos);
 }
 
 void WindowingEngine::TimeElapsed(double start, double end)
 {
-    // Real-time rendering handled here
+    m_ActiveScene->HandleTimeElapsed(start, end);
 }
