@@ -1,0 +1,2 @@
+roads.newt -> Describes the roads (length, direction, lanes, ...)
+cross.newt -> Describes where road intersections are (in terms of percentages of the road length)

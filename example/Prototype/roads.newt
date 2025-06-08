@@ -1,0 +1,3 @@
+id,name,length,angle,forward_lanes,backward_lanes
+1,A Street,500,0,1,1
+2,B Street,1000,90,1,1
