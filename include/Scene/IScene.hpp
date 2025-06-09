@@ -3,6 +3,8 @@
 class IScene
 {
 public:
+    virtual void InitializeScene() = 0;
+
     virtual void HandleKeyPressed(int key) = 0;
     virtual void HandleKeyReleased(int key) = 0;
     virtual void HandleMousePressed(int button, int pX, int pY) = 0;

@@ -1,6 +1,9 @@
 #pragma once
 
-#include <Engine/WindowingEngine.h>
+#include <glm/glm.hpp>
+#include <glad/gl.h>
+#include <GLFW/glfw3.h>
+
 #include <Scene/IScene.hpp>
 
 class SceneBase : public IScene
@@ -10,6 +13,7 @@ private:
 public:
     SceneBase(const glm::vec4& color);
 
+    virtual void InitializeScene() override;
     virtual void HandleKeyPressed(int key) override;
     virtual void HandleKeyReleased(int key) override;
     virtual void HandleMousePressed(int button, int pX, int pY) override;

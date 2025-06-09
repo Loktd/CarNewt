@@ -11,6 +11,9 @@
 
 #include <Scene/IScene.hpp>
 #include <Scene/SceneNames.hpp>
+#include <Scene/MainMenuScene.h>
+#include <Scene/SimulationScene.h>
+#include <Exceptions/EngineExceptions.hpp>
 
 class WindowingEngine
 {

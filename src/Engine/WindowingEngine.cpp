@@ -1,7 +1,4 @@
 #include <Engine/WindowingEngine.h>
-#include <Exceptions/EngineExceptions.hpp>
-#include <Scene/MainMenuScene.h>
-#include <Scene/SimulationScene.h>
 
 WindowingEngine WindowingEngine::s_EngineInstance = WindowingEngine("CarNewt", 800, 600, 3, 3);
 
@@ -125,6 +122,7 @@ void WindowingEngine::SwitchToScene(SceneName name)
     }
 
     m_ActiveScene = m_SceneMap.at(name);
+    m_ActiveScene->InitializeScene();
     Refresh();
 }
 

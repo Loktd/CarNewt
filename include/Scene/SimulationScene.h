@@ -1,11 +1,18 @@
 #pragma once
 
-#include <Scene/SceneBase.h>
+#include <iostream>
+#include <filesystem>
 
-class SimulationScene : public SceneBase
-{
+#include <Scene/SceneBase.h>
+#include <Loader/NewtLoader.h>
+#include <Engine/WindowingEngine.h>
+
+class SimulationScene : public SceneBase {
 private:
+    NewtLoader m_Loader;
+    std::shared_ptr<RoadNetwork> m_RoadNetwork;
 public:
     SimulationScene();
+    virtual void InitializeScene() override;
     virtual void HandleKeyPressed(int key) override;
 };
