@@ -1,2 +1,3 @@
-roads.newt -> Describes the roads (length, direction, lanes, ...)
-cross.newt -> Describes where road intersections are (in terms of percentages of the road length)
+roads.newt -> Describes the roads between intersections
+intersection.newt -> Describes where road intersections are and their type
+street -> Describes the streets: name, speed limit, ...
