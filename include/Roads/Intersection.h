@@ -22,4 +22,6 @@ public:
     static std::shared_ptr<Intersection> CreateFromCSVLine(std::string line);
 
     Intersection(const std::string& id, double xCoord, double yCoord);
+    void AddInward(std::shared_ptr<Road> road);
+    void AddOutward(std::shared_ptr<Road> road);
 };

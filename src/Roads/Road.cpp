@@ -27,15 +27,25 @@ std::vector<std::shared_ptr<Road>> Road::CreateFromCSVLine(std::string line, con
 
     for (size_t i = 0; i < forwardCount; i++) {
         std::string id = idBase + "F" + std::to_string(i + 1);
-        result.push_back(std::make_shared<Road>(id, from, to, street));
+        auto road = std::make_shared<Road>(id, from, to, street);
+        result.push_back(road);
+        Road::ConnectToIntersections(road);
     }
 
     for (size_t i = 0; i < backwardCount; i++) {
         std::string id = idBase + "B" + std::to_string(i + 1);
-        result.push_back(std::make_shared<Road>(id, from, to, street));
+        auto road = std::make_shared<Road>(id, from, to, street);
+        result.push_back(road);
+        Road::ConnectToIntersections(road);
     }
 
     return result;
+}
+
+void Road::ConnectToIntersections(std::shared_ptr<Road> road)
+{
+    road->m_From->AddOutward(road);
+    road->m_To->AddInward(road);
 }
 
 Road::Road(const std::string& id, std::shared_ptr<Intersection> from, std::shared_ptr<Intersection> to, std::shared_ptr<Street> street)

@@ -26,3 +26,13 @@ Intersection::Intersection(const std::string& id, double xCoord, double yCoord)
     : Identifiable(id), m_XCoordinate(xCoord), m_YCoordinate(yCoord)
 {
 }
+
+void Intersection::AddInward(std::shared_ptr<Road> road)
+{
+    m_InwardRoads.push_back(road);
+}
+
+void Intersection::AddOutward(std::shared_ptr<Road> road)
+{
+    m_OutwardRoads.push_back(road);
+}
