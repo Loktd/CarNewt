@@ -7,7 +7,6 @@ project(CarNewt VERSION 0.1.0 LANGUAGES C CXX)
 # Setting up c++ standard
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address")
 
 # Setting up source directory and source files
 set (source_dir "${PROJECT_SOURCE_DIR}/src/")

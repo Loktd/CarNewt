@@ -3,7 +3,7 @@
     "configurePresets": [
         {
             "name": "Compile debug with gcc",
-            "displayName": "GCC 13.3.0 x86_64",
+            "displayName": "GCC x86_64",
             "description": "Using compilers gcc and g++",
             "binaryDir": "${sourceDir}/build/",
             "cacheVariables": {
