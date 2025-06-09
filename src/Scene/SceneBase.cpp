@@ -2,6 +2,10 @@
 
 SceneBase::SceneBase(const glm::vec4& color) : m_Color(color) {}
 
+void SceneBase::InitializeScene()
+{
+}
+
 void SceneBase::HandleKeyPressed(int key)
 {
 }

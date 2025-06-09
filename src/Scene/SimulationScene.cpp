@@ -1,9 +1,10 @@
 #include <Scene/SimulationScene.h>
-#include <GLFW/glfw3.h>
-#include <Engine/WindowingEngine.h>
 
-SimulationScene::SimulationScene() : SceneBase(glm::vec4(0, 1, 0, 1))
-{
+SimulationScene::SimulationScene() : SceneBase(glm::vec4(0, 1, 0, 1)), m_Loader() {}
+
+void SimulationScene::InitializeScene() {
+    m_Loader.AskForDirectory();
+    m_RoadNetwork = m_Loader.LoadRoadNetwork();
 }
 
 void SimulationScene::HandleKeyPressed(int key) {
