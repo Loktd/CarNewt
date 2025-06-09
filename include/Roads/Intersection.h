@@ -7,10 +7,11 @@
 #include "Road.h"
 #include <Loader/CSVProcessor.hpp>
 #include <Exceptions/LoaderExceptions.hpp>
+#include <Generics/Identifiable.h>
 
 class Road;
 
-class Intersection
+class Intersection : public Identifiable
 {
 private:
     double m_XCoordinate, m_YCoordinate;
@@ -18,7 +19,7 @@ private:
     std::vector<std::shared_ptr<Road>> m_OutwardRoads;
     std::vector<std::shared_ptr<Road>> m_InwardRoads;
 public:
-    static std::pair<std::string, std::shared_ptr<Intersection>> CreateFromCSVLine(std::string line);
+    static std::shared_ptr<Intersection> CreateFromCSVLine(std::string line);
 
-    Intersection(double xCoord, double yCoord);
+    Intersection(const std::string& id, double xCoord, double yCoord);
 };

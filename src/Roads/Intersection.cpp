@@ -1,10 +1,10 @@
 #include <Roads/Intersection.h>
 
-std::pair<std::string, std::shared_ptr<Intersection>> Intersection::CreateFromCSVLine(std::string line)
+std::shared_ptr<Intersection> Intersection::CreateFromCSVLine(std::string line)
 {
     std::array<std::string, 4> tokenized = CSVProcessor::split<4>(line);
 
-    std::string id = tokenized[0];
+    std::string id = "I" + tokenized[0];
     double x;
     double y;
     try {
@@ -19,7 +19,10 @@ std::pair<std::string, std::shared_ptr<Intersection>> Intersection::CreateFromCS
     }
     std::string type = tokenized[3];
 
-    return std::make_pair(id, std::make_shared<Intersection>(x, y));
+    return std::make_shared<Intersection>(id, x, y);
 }
 
-Intersection::Intersection(double xCoord, double yCoord) : m_XCoordinate(xCoord), m_YCoordinate(yCoord) {}
+Intersection::Intersection(const std::string& id, double xCoord, double yCoord)
+    : Identifiable(id), m_XCoordinate(xCoord), m_YCoordinate(yCoord)
+{
+}
