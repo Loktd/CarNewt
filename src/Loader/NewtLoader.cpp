@@ -50,9 +50,33 @@ std::shared_ptr<RoadNetwork> NewtLoader::LoadRoadNetwork()
 
     std::shared_ptr<RoadNetwork> result = std::make_shared<RoadNetwork>();
 
-    CreateAll<Intersection>(INTERSECTIONS_FILE_NAME, result);
-    CreateAll<Street>(STREETS_FILE_NAME, result);
-    CreateAll<Road>(ROADS_FILE_NAME, result);
+    std::string line;
+
+    std::ifstream intersectionsFile = OpenFile(INTERSECTIONS_FILE_NAME);
+    std::getline(intersectionsFile, line);
+    while (std::getline(intersectionsFile, line))
+    {
+        std::shared_ptr<Intersection> ptr = Intersection::CreateFromCSVLine(line);
+        result->Add(ptr);
+    }
+
+    std::ifstream streetsFile = OpenFile(STREETS_FILE_NAME);
+    std::getline(streetsFile, line);
+    while (std::getline(streetsFile, line))
+    {
+        std::shared_ptr<Street> ptr = Street::CreateFromCSVLine(line);
+        result->Add(ptr);
+    }
+
+    std::ifstream roadsFile = OpenFile(ROADS_FILE_NAME);
+    std::getline(roadsFile, line);
+    while (std::getline(roadsFile, line))
+    {
+        auto roadList = Road::CreateFromCSVLine(line, result);
+        for (std::shared_ptr<Road> road : roadList) {
+            result->Add(road);
+        }
+    }
 
     return result;
 }
