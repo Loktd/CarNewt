@@ -37,6 +37,7 @@ inline void NewtLoader::CreateAll(const std::string& fileName, std::shared_ptr<R
     std::ifstream file = OpenFile(fileName);
 
     std::string line;
+    std::getline(file, line);
     while (std::getline(file, line))
     {
         auto [id, next] = T::CreateFromCSVLine(line);
