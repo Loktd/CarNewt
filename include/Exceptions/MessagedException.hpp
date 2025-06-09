@@ -19,8 +19,3 @@ public:
         return m_Message.c_str();
     }
 };
-
-std::ostream& operator<<(std::ostream& os, const MessagedException& exception) {
-    os << exception.Message();
-    return os;
-}
