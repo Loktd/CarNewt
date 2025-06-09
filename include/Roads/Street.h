@@ -5,12 +5,15 @@
 #include <memory>
 
 #include "Intersection.h"
+#include <Generics/Identifiable.h>
 
-class Street
+class Street : public Identifiable
 {
 private:
     std::string m_Name;
     size_t m_SpeedLimit;
 public:
-    static std::pair<std::string, std::shared_ptr<Street>> CreateFromCSVLine(std::string line);
+    static std::shared_ptr<Street> CreateFromCSVLine(std::string line);
+
+    Street(const std::string& id, const std::string& name, size_t speedLimit);
 };
