@@ -8,7 +8,7 @@
 
 class SceneBase : public IScene
 {
-private:
+protected:
     glm::vec4 m_Color;
 public:
     SceneBase(const glm::vec4& color);

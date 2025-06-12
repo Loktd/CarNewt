@@ -13,4 +13,6 @@ public:
     virtual void HandleTimeElapsed(double start, double end) = 0;
 
     virtual void Render() = 0;
+
+    virtual ~IScene() {}
 };

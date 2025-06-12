@@ -4,7 +4,10 @@
 
 #include <Engine/WindowingEngine.h>
 
-MainMenuScene::MainMenuScene() : SceneBase(glm::vec4(1, 0, 0, 1)) {}
+MainMenuScene::MainMenuScene()
+    : SceneBase(glm::vec4(1, 0, 0, 1))
+{
+}
 
 void MainMenuScene::HandleKeyPressed(int key) {
     if (key == GLFW_KEY_S) {
