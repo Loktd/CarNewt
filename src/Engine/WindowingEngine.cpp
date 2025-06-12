@@ -88,6 +88,9 @@ WindowingEngine::WindowingEngine(const char* title, int width, int height, int m
 
 WindowingEngine::~WindowingEngine()
 {
+    m_SceneMap.clear();
+    m_ActiveScene.reset();
+
     glfwDestroyWindow(m_Window);
     glfwTerminate();
 }

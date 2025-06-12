@@ -28,7 +28,6 @@ private:
     std::shared_ptr<IScene> m_ActiveScene;
 
     void Initialize();
-    void Refresh();
     void Render();
     void KeyPressed(int key);
     void KeyReleased(int key);
@@ -36,20 +35,21 @@ private:
     void MouseReleased(int button, int pX, int pY);
     void MouseMotion(int pX, int pY);
     void TimeElapsed(double start, double end);
-
+    
     static void error_callback(int error, const char* description);
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
     static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
     static void cursor_position_callback(GLFWwindow* window, double pX, double pY);
     static void window_refresh_callback(GLFWwindow* window);
-
+    
     WindowingEngine(const char* title, int width, int height, int major, int minor);
     WindowingEngine(const WindowingEngine& copied) = delete;
     ~WindowingEngine();
-public:
+    public:
     static WindowingEngine& GetInstance();
-
+    
     void Run();
     void SwitchToScene(SceneName name);
+    void Refresh();
     void Exit();
 };
