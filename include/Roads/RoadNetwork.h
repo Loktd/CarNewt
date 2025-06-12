@@ -4,12 +4,13 @@
 #include <memory>
 
 #include "Intersection.h"
+#include <Graphics/IDrawable2D.h>
 
 class Intersection;
 class Road;
 class Street;
 
-class RoadNetwork
+class RoadNetwork : IDrawable2D
 {
 private:
     std::unordered_map<std::string, std::shared_ptr<Intersection>> m_IntersectionMap;
@@ -24,4 +25,5 @@ public:
     std::shared_ptr<Intersection> GetIntersection(const std::string& id) const;
     std::shared_ptr<Street> GetStreet(const std::string& id) const;
 
+    void Draw(std::shared_ptr<Shader2D> shader, std::shared_ptr<Camera2D> camera) override;
 };

@@ -24,3 +24,13 @@ std::shared_ptr<Street> RoadNetwork::GetStreet(const std::string& id) const
 {
     return m_StreetMap.at(id);
 }
+
+void RoadNetwork::Draw(std::shared_ptr<Shader2D> shader, std::shared_ptr<Camera2D> camera) {
+    for (auto [name, intersection] : m_IntersectionMap) {
+        intersection->Draw(shader, camera);
+    }
+
+    for (auto [name, road] : m_RoadMap) {
+        road->Draw(shader, camera);
+    }
+}
