@@ -18,14 +18,14 @@ private:
     void SetUniform(int location, const glm::vec4& value);
     void SetUniform(int location, const glm::mat4& value);
 public:
-    ShaderProgram(const std::string& vertexShaderSource, const std::string& fragmentShaderSource, const std::string& fragmentColorName = "fragmentColor");
+    ShaderProgram(const std::string& vertexShaderSource, const std::string& fragmentShaderSource, const std::string& fragmentColorName = "FragmentColor");
 
     void Use();
 
     template<typename T>
     void SetUniform(const T& value, const std::string& uniformName);
 
-    ~ShaderProgram();
+    virtual ~ShaderProgram();
 };
 
 template<typename T>
