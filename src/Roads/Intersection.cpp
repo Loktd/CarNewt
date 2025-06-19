@@ -1,5 +1,10 @@
 #include <Roads/Intersection.h>
 
+std::unique_ptr<Object2D> Intersection::CreateDisplayed()
+{
+    return std::make_unique<Circle>(glm::vec2(m_XCoordinate, m_YCoordinate), 10, glm::vec4(0, 0, 0, 1));
+}
+
 std::shared_ptr<Intersection> Intersection::CreateFromCSVLine(std::string line)
 {
     std::array<std::string, 4> tokenized = CSVProcessor::split<4>(line);
@@ -23,7 +28,7 @@ std::shared_ptr<Intersection> Intersection::CreateFromCSVLine(std::string line)
 }
 
 Intersection::Intersection(const std::string& id, double xCoord, double yCoord)
-    : Identifiable(id), m_XCoordinate(xCoord), m_YCoordinate(yCoord), m_Circle(glm::vec2(xCoord, yCoord), 10, glm::vec4(0, 0, 0, 1))
+    : Identifiable(id), m_XCoordinate(xCoord), m_YCoordinate(yCoord)
 {
 }
 
@@ -40,8 +45,4 @@ void Intersection::AddOutward(std::shared_ptr<Road> road)
 glm::vec2 Intersection::Position() const
 {
     return glm::vec2(m_XCoordinate, m_YCoordinate);
-}
-
-void Intersection::Draw(std::shared_ptr<Shader2D> shader, std::shared_ptr<Camera2D> camera) {
-    m_Circle.Draw(shader, camera);
 }

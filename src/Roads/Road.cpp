@@ -48,11 +48,12 @@ void Road::ConnectToIntersections(std::shared_ptr<Road> road)
     road->m_To->AddInward(road);
 }
 
-Road::Road(const std::string& id, std::shared_ptr<Intersection> from, std::shared_ptr<Intersection> to, std::shared_ptr<Street> street)
-    : Identifiable(id), m_From(from), m_To(to), m_Street(street), m_Line(from->Position(), to->Position(), glm::vec4(0, 0, 0, 1), 10)
+std::unique_ptr<Object2D> Road::CreateDisplayed()
 {
+    return std::make_unique<Line>(m_From->Position(), m_To->Position(), glm::vec4(0, 0, 0, 1), 10);
 }
 
-void Road::Draw(std::shared_ptr<Shader2D> shader, std::shared_ptr<Camera2D> camera) {
-    m_Line.Draw(shader, camera);
+Road::Road(const std::string& id, std::shared_ptr<Intersection> from, std::shared_ptr<Intersection> to, std::shared_ptr<Street> street)
+    : Identifiable(id), m_From(from), m_To(to), m_Street(street)
+{
 }
