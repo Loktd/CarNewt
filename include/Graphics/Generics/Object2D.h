@@ -4,8 +4,8 @@
 #include <glad/gl.h>
 #include <vector>
 
-#include <Graphics/IDrawable2D.h>
-#include <Graphics/VertexHandler2D.h>
+#include <Graphics/Generics/IDrawable2D.h>
+#include <Graphics/Vertex/VertexHandler2D.h>
 
 class Object2D : public IDrawable2D
 {

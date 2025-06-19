@@ -1,4 +1,4 @@
-#include <Graphics/Object2D.h>
+#include <Graphics/Generics/Object2D.h>
 
 void Object2D::Draw(std::shared_ptr<Shader2D> shader, std::shared_ptr<Camera2D> camera)
 {

@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "Intersection.h"
-#include <Graphics/IDrawable2D.h>
+#include <Graphics/Generics/IDrawable2D.h>
 
 class Intersection;
 class Road;

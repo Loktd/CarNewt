@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include <Graphics/VertexHandler2D.h>
-#include <Graphics/Vertex2D.hpp>
-#include <Graphics/Shader2D.h>
+#include <Graphics/Vertex/VertexHandler2D.h>
+#include <Graphics/Vertex/Vertex2D.hpp>
+#include <Graphics/Shaders/Shader2D.h>
 
 class OneColorVertexHandler2D : public VertexHandler2D
 {

@@ -6,7 +6,7 @@
 #include "Street.h"
 #include <Generics/Identifiable.h>
 #include <Roads/RoadNetwork.h>
-#include <Graphics/IDrawable2D.h>
+#include <Graphics/Generics/IDrawable2D.h>
 #include <Graphics/Shapes/Line.h>
 
 class Intersection;

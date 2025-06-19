@@ -1,4 +1,4 @@
-#include <Graphics/Shader2D.h>
+#include <Graphics/Shaders/Shader2D.h>
 
 static const char* g_VertexShaderSource = R"(
     #version 330

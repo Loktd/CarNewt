@@ -1,7 +1,7 @@
 #pragma once
 
-#include <Graphics/Object2D.h>
-#include <Graphics/OneColorVertexHandler2D.h>
+#include <Graphics/Generics/Object2D.h>
+#include <Graphics/Vertex/OneColorVertexHandler2D.h>
 
 class Line : public Object2D
 {

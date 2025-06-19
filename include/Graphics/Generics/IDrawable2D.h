@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include <Graphics/Shader2D.h>
-#include <Graphics/Camera2D.h>
+#include <Graphics/Shaders/Shader2D.h>
+#include <Graphics/Camera/Camera2D.h>
 
 class IDrawable2D
 {

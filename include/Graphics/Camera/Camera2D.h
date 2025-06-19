@@ -2,7 +2,7 @@
 
 #include <glad/gl.h>
 
-#include <Graphics/MatrixCreator.h>
+#include <Graphics/Matrix/MatrixCreator.h>
 
 class Camera2D
 {

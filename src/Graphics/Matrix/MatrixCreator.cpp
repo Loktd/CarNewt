@@ -1,4 +1,4 @@
-#include <Graphics/MatrixCreator.h>
+#include <Graphics/Matrix/MatrixCreator.h>
 
 glm::mat4 MatrixCreator::Translate(const glm::vec3& by) {
     glm::vec4

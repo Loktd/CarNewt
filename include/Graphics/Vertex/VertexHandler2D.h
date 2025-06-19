@@ -2,9 +2,9 @@
 
 #include <memory>
 
-#include <Graphics/Shader2D.h>
-#include <Graphics/Camera2D.h>
-#include <Graphics/Vertex2D.hpp>
+#include <Graphics/Shaders/Shader2D.h>
+#include <Graphics/Camera/Camera2D.h>
+#include <Graphics/Vertex/Vertex2D.hpp>
 
 class VertexHandler2D
 {

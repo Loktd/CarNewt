@@ -4,8 +4,8 @@
 #include <glm/glm.hpp>
 #include <glad/gl.h>
 
-#include <Graphics/Object2D.h>
-#include <Graphics/OneColorVertexHandler2D.h>
+#include <Graphics/Generics/Object2D.h>
+#include <Graphics/Vertex/OneColorVertexHandler2D.h>
 
 class SimpleShape : public Object2D
 {

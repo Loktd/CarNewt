@@ -4,11 +4,11 @@
 #include <array>
 #include <memory>
 
-#include "Road.h"
+#include <Roads/Road.h>
 #include <Loader/CSVProcessor.hpp>
 #include <Exceptions/LoaderExceptions.hpp>
 #include <Generics/Identifiable.h>
-#include <Graphics/IDrawable2D.h>
+#include <Graphics/Generics/IDrawable2D.h>
 #include <Graphics/Shapes/Circle.h>
 
 class Road;

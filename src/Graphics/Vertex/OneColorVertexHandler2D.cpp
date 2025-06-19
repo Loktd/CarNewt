@@ -1,4 +1,4 @@
-#include <Graphics/OneColorVertexHandler2D.h>
+#include <Graphics/Vertex/OneColorVertexHandler2D.h>
 
 void OneColorVertexHandler2D::UpdateGPU()
 {

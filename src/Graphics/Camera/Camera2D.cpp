@@ -1,4 +1,4 @@
-#include <Graphics/Camera2D.h>
+#include <Graphics/Camera/Camera2D.h>
 
 Camera2D::Camera2D(const glm::vec2& wPosition, const glm::vec2& wSize)
     : m_CenterInWorld(wPosition), m_SizeInWorld(wSize)

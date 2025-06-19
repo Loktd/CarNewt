@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include <Graphics/ShaderProgram.h>
+#include <Graphics/Shaders/ShaderProgram.h>
 
 class Shader2D : public ShaderProgram
 {

@@ -1,4 +1,4 @@
-#include <Graphics/ShaderProgram.h>
+#include <Graphics/Shaders/ShaderProgram.h>
 
 void ShaderProgram::SetUniform(int location, const int& value)
 {

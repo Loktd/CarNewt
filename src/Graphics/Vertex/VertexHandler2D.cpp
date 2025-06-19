@@ -1,4 +1,4 @@
-#include <Graphics/VertexHandler2D.h>
+#include <Graphics/Vertex/VertexHandler2D.h>
 
 VertexHandler2D::VertexHandler2D()
 {
