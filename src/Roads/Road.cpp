@@ -44,16 +44,27 @@ std::vector<std::shared_ptr<Road>> Road::CreateFromCSVLine(std::string line, con
 
 void Road::ConnectToIntersections(std::shared_ptr<Road> road)
 {
-    road->m_From->AddOutward(road);
-    road->m_To->AddInward(road);
+    if (auto from = road->m_From.lock()) {
+        from->AddOutward(road);
+    }
+    if (auto to = road->m_From.lock()) {
+        to->AddInward(road);
+    }
 }
 
 std::unique_ptr<Object2D> Road::CreateDisplayed()
 {
-    return std::make_unique<Line>(m_From->Position(), m_To->Position(), glm::vec4(0, 0, 0, 1), 10);
+    std::shared_ptr<Intersection> from = m_From.lock();
+    std::shared_ptr<Intersection> to = m_To.lock();
+
+    if (from && to) {
+        return std::make_unique<Line>(from->Position(), to->Position(), glm::vec4(0, 0, 0, 1), 10);
+    }
+
+    throw WeakPointerInvalid("A road's weak pointer to an intersection is invalid when trying to create the displayed shape.");
 }
 
-Road::Road(const std::string& id, std::shared_ptr<Intersection> from, std::shared_ptr<Intersection> to, std::shared_ptr<Street> street)
+Road::Road(const std::string& id, std::weak_ptr<Intersection> from, std::weak_ptr<Intersection> to, std::weak_ptr<Street> street)
     : Identifiable(id), m_From(from), m_To(to), m_Street(street)
 {
 }

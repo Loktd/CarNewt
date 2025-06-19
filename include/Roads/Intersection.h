@@ -18,16 +18,16 @@ class Intersection : public Identifiable, public DisplayedObject
 private:
     double m_XCoordinate, m_YCoordinate;
 
-    std::vector<std::shared_ptr<Road>> m_OutwardRoads;
-    std::vector<std::shared_ptr<Road>> m_InwardRoads;
+    std::vector<std::weak_ptr<Road>> m_OutwardRoads;
+    std::vector<std::weak_ptr<Road>> m_InwardRoads;
 protected:
     std::unique_ptr<Object2D> CreateDisplayed() override;
 public:
     static std::shared_ptr<Intersection> CreateFromCSVLine(std::string line);
 
     Intersection(const std::string& id, double xCoord, double yCoord);
-    void AddInward(std::shared_ptr<Road> road);
-    void AddOutward(std::shared_ptr<Road> road);
+    void AddInward(std::weak_ptr<Road> road);
+    void AddOutward(std::weak_ptr<Road> road);
 
     glm::vec2 Position() const;
 };
